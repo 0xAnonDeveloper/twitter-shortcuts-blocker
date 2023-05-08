@@ -162,6 +162,11 @@ document.addEventListener("keydown", function (event) {
     return;
   }
 
+  // Check if the pressed keys match any of the known shortcuts
+  // Remove the block for all relevant Cmd/Ctrl keys
+  if ((event.ctrlKey || event.metaKey) && !event.altKey && !event.shiftKey) {
+    return;
+  }
 // Check if the event target is an input or textarea
 if (event.target && (event.target.nodeName === 'INPUT' || event.target.nodeName === 'TEXTAREA')) {
   const replyInput = document.querySelector('[data-testid="tweetTextarea_0"]');
@@ -175,6 +180,9 @@ if (event.target && (event.target.nodeName === 'INPUT' || event.target.nodeName 
     // Block the event
     event.preventDefault();
   }
+
+
+
 
   // Check if the pressed keys match any of the multi-key shortcuts
   for (let i = 0; i < multiKeyShortcuts.length; i++) {
